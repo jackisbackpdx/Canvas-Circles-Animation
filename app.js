@@ -13,9 +13,9 @@ function Circle(x, y, r, c) {
     this.c = c;
 
     this.dx = (Math.random() * 4) + 1;
-    this.dx *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+    this.dx *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
     this.dy = (Math.random() * 4) + 1;
-    this.dy *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+    this.dy *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
 
     this.draw = function() {
         ctx.beginPath();
@@ -28,10 +28,10 @@ function Circle(x, y, r, c) {
         this.x += this.dx;
         this.y += this.dy;
 
-        if(this.x + this.r > canvas.width || this.x - this.r < 0) {
+        if (this.x + this.r > canvas.width || this.x - this.r < 0) {
             this.dx = -this.dx;
         }
-        if(this.y + this.r > canvas.height || this.y - this.r < 0) {
+        if (this.y + this.r > canvas.height || this.y - this.r < 0) {
             this.dy = -this.dy;
         }
 
@@ -41,7 +41,7 @@ function Circle(x, y, r, c) {
 
 const balls = [];
 
-for(let i = 0; i < 20; i++) {
+for (let i = 0; i < 20; i++) {
     let r = Math.floor(Math.random() * 30) + 15;
     let x = Math.random() * (canvas.width - r * 2) + r;
     let y = Math.random() * (canvas.height - r * 2) + r;
@@ -72,7 +72,7 @@ p.addEventListener('click', addCircle, false);
 
 function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for(let i = 0; i < balls.length; i++) {
+    for (let i = 0; i < balls.length; i++) {
         balls[i].animate();
     }
 
@@ -84,14 +84,14 @@ update();
 function changeColors() {
     setTimeout(function() {
         canvas.removeEventListener('click', addCircle, false);
-        for(let i = 0; i < balls.length; i++) {
-            if(balls[i].c === 'red') {
+        for (let i = 0; i < balls.length; i++) {
+            if (balls[i].c === 'red') {
                 balls[i].c = 'blue';
             } else {
                 balls[i].c = 'red';
             }
         }
-        if(clickColor === 'red') {
+        if (clickColor === 'red') {
             clickColor = 'blue';
         } else {
             clickColor = 'red';
@@ -99,7 +99,6 @@ function changeColors() {
         canvas.addEventListener('click', addCircle, false);
         changeColors();
         canvas.style.backgroundColor = randomColor();
-        console.log(canvas.style.backgroundColor);
     }, 2000);
 }
 changeColors();
